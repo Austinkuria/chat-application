@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to the Chat Room, {{ session['username'] }}!</h1>
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+        </div>
+        
+        <div id="messages" class="chat-box">
+            {% for message in messages[::-1] %}
+                <p class="message {{ 'self' if message.author.username == session['username'] else 'other' }}">
+                    <strong class="username {{ 'self' if message.author.username == session['username'] else 'other' }}">
+                        {{ message.author.username }}:
+                    </strong> 
+                    {{ message.content }}
+                    <span class="timestamp">[{{ message.timestamp.strftime('%d-%m-%Y %H:%M:%S') }}]</span>
+                </p>
+            {% endfor %}
+        </div>
+        <div id="error-box" style="color: red; display: none;"></div>  <!-- Hidden error box -->
+        <div class="input-container">
+            <textarea id="message" placeholder="Type a message..." rows="3"></textarea>
+            <button onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i> Send
+            </button>
+        </div>
+    </div>
+
+    <!-- Pass username to JavaScript -->
+    <script>
+        var username = "{{ session['username'] }}";
+    </script>
+
+    <script>
+        // Configure Socket.IO connection with timeout and retry options
+        const socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port, {
+            reconnection: true,             // Enable reconnection
+            reconnectionAttempts: 5,        // Number of reconnection attempts
+            reconnectionDelay: 1000,        // Delay between reconnection attempts (in milliseconds)
+            reconnectionDelayMax: 5000,     // Maximum delay between reconnection attempts (in milliseconds)
+            timeout: 20000                  // Connection timeout (in milliseconds)
+        });
+
+        // Handle incoming messages
+        socket.on('receive_message', (data) => 
+        {
+            const messageBox = document.getElementById('messages');
+            let timestamp = 'Invalid Date';  // Default value
+            
+            try {
+                const parsedTime = new Date(data.timestamp);  // Attempt to parse timestamp
+                if (!isNaN(parsedTime)) {
+                    // Format to Kenyan timezone
+                    timestamp = new Intl.DateTimeFormat('en-GB', { 
+                        year: 'numeric', 
+                        month: '2-digit', 
+                        day: '2-digit', 
+                        hour: '2-digit', 
+                        minute: '2-digit', 
+                        second: '2-digit', 
+                        timeZone: 'Africa/Nairobi' 
+                    }).format(parsedTime);
+                }
+            } catch (error) {
+                console.error('Invalid timestamp:', data.timestamp);
+            }
+
+            // Create a new message element
+            const newMessage = document.createElement('p');
+            newMessage.classList.add('message', data.user === 'System' ? 'system' : (data.user === username ? 'self' : 'other'));
+            newMessage.innerHTML = `<strong class="username">${data.user}:</strong> ${data.msg}
+                                    <span class="timestamp">[${timestamp}]</span>`;
+            messageBox.appendChild(newMessage);
+            messageBox.scrollTop = messageBox.scrollHeight;  // Scroll to bottom
+        });
+
+        // Handle connection errors
+        socket.on('connect_error', (error) => {
+            displayError('Connection error. Please try again.');
+            console.error('Connection error:', error);
+        });
+
+        // Handle reconnection attempts
+        socket.on('reconnect_attempt', () => {
+            displayError('Attempting to reconnect...');
+        });
+
+        // Handle successful reconnection
+        socket.on('reconnect', (attemptNumber) => {
+            displayError('Reconnected successfully.', 'success');
+            console.log('Reconnected successfully on attempt', attemptNumber);
+        });
+
+        // Handle reconnection errors
+        socket.on('reconnect_error', (error) => {
+            displayError('Reconnection error. Please try again.');
+            console.error('Reconnection error:', error);
+        });
+
+        // Handle reconnection failures
+        socket.on('reconnect_failed', () => {
+            displayError('Reconnection failed. Please refresh the page.');
+            console.error('Reconnection failed.');
+        });
+
+        // Validate and send message
+        function sendMessage() {
+            const message = document.getElementById('message').value.trim();
+            const errorBox = document.getElementById('error-box');
+            
+            if (message) {
+                socket.emit('send_message', { msg: message });
+                document.getElementById('message').value = '';  // Clear input field
+                errorBox.textContent = '';
+                errorBox.style.display = 'none';
+            } else {
+                displayError('Message cannot be empty.');
+            }
+        }
+
+        // Display error messages inline
+        function displayError(message, type = 'error') {
+            const errorBox = document.getElementById('error-box');
+            errorBox.textContent = message;
+            errorBox.style.display = 'block';
+            errorBox.className = type;
+        }
+    </script>
+</body>
+</html>

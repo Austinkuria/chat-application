@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>  
+    <!-- Link to an external CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container-form">
+        <h1>Register</h1> 
+        <!-- Display flash messages for feedback (success, errors) -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="{{ category }}">{{ message }}</div>  <!-- Apply CSS class based on message category ('error' or 'success') -->
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Registration form: method is POST for submitting data securely -->
+        <form method="POST" action="{{ url_for('register') }}">
+            {{ form.hidden_tag() }}  <!-- CSRF protection token hidden field -->
+
+            <!-- Username field with label and input -->
+            <div>
+                {{ form.username.label }}  <!-- Display the label for the username field -->
+                {{ form.username(class="input") }}  <!-- Input field for the username with a CSS class for styling -->
+                <span class="error">{{ form.username.errors[0] if form.username.errors else '' }}</span>  <!-- Display the first error for the username field, if any -->
+            </div>
+
+            <!-- Email field with label and input -->
+            <div>
+                {{ form.email.label }}  <!-- Label for the email field -->
+                {{ form.email(class="input") }}  <!-- Input field for email with a CSS class for styling -->
+                <span class="error">{{ form.email.errors[0] if form.email.errors else '' }}</span>  <!-- Display the first error for the email field, if any -->
+            </div>
+
+            <!-- Password field with label and input -->
+            <div>
+                {{ form.password.label }}  <!-- Label for the password field -->
+                {{ form.password(class="input") }}  <!-- Input field for password with a CSS class -->
+                <span class="error">{{ form.password.errors[0] if form.password.errors else '' }}</span>  <!-- Display the first error for the password field, if any -->
+            </div>
+
+            <!-- Confirm password field with label and input -->
+            <div>
+                {{ form.confirm_password.label }}  <!-- Label for confirm password field -->
+                {{ form.confirm_password(class="input") }}  <!-- Input field for confirming password with a CSS class -->
+                <span class="error">{{ form.confirm_password.errors[0] if form.confirm_password.errors else '' }}</span>  <!-- Display the first error for confirm password field, if any -->
+            </div>
+
+            <!-- Submit button to submit the form -->
+            <button type="submit">Register</button>
+        </form>
+
+        <!-- Link to the login page for users who already have an account -->
+        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+    </div>
+</body>
+</html>

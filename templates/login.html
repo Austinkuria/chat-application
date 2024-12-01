@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Link to external CSS for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container-form">
+        <h1>Login</h1> 
+
+        <!-- Display flash messages (for success or error notifications) -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>  <!-- Flash message styled by category ('error' or 'success') -->
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Login form using POST method -->
+        <form method="POST">
+            {{ form.hidden_tag() }}  <!-- CSRF protection token hidden field -->
+
+            <!-- Username input field with label -->
+            <div>
+                {{ form.username.label }}  <!-- Display label for username -->
+                {{ form.username(class="input") }}  <!-- Input field for username with a CSS class -->
+            </div>
+
+            <!-- Password input field with label -->
+            <div>
+                {{ form.password.label }}  <!-- Display label for password -->
+                {{ form.password(class="input") }}  <!-- Input field for password with a CSS class -->
+            </div>
+
+            <!-- Submit button to submit the form -->
+            <div>
+                {{ form.submit(class="submit") }}  <!-- Submit button with a CSS class for styling -->
+            </div>
+        </form>
+
+        <!-- Link to registration page for users without an account -->
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+    </div>
+</body>
+</html>

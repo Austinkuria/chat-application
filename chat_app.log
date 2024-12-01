@@ -1,0 +1,79 @@
+2024-12-01 14:25:53,679 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:5000
+ * Running on https://192.168.137.57:5000
+2024-12-01 14:25:53,706 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-01 14:25:53,716 - INFO -  * Restarting with stat
+2024-12-01 14:27:03,351 - WARNING -  * Debugger is active!
+2024-12-01 14:27:03,525 - INFO -  * Debugger PIN: 373-890-540
+2024-12-01 14:27:05,533 - INFO - 127.0.0.1 - - [01/Dec/2024 14:27:05] "[32mGET /chat HTTP/1.1[0m" 302 -
+2024-12-01 14:27:06,427 - INFO - 127.0.0.1 - - [01/Dec/2024 14:27:06] "GET /login HTTP/1.1" 200 -
+2024-12-01 14:27:11,358 - INFO - 127.0.0.1 - - [01/Dec/2024 14:27:11] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-12-01 14:28:33,357 - INFO - 127.0.0.1 - - [01/Dec/2024 14:28:33] "[32mGET /chat HTTP/1.1[0m" 302 -
+2024-12-01 14:28:33,751 - INFO - 127.0.0.1 - - [01/Dec/2024 14:28:33] "GET /login HTTP/1.1" 200 -
+2024-12-01 14:28:40,944 - INFO - 127.0.0.1 - - [01/Dec/2024 14:28:40] "GET /static/style.css HTTP/1.1" 200 -
+2024-12-01 14:29:12,669 - WARNING - Not Found: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2024-12-01 14:29:12,680 - INFO - 127.0.0.1 - - [01/Dec/2024 14:29:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-12-01 14:31:07,174 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:07] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-12-01 14:31:07,193 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:07] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-12-01 14:31:08,388 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:08] "GET /chat HTTP/1.1" 200 -
+2024-12-01 14:31:08,426 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:08] "GET /chat HTTP/1.1" 200 -
+2024-12-01 14:31:10,108 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:10] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-12-01 14:31:12,696 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:12] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-12-01 14:31:17,437 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:17] "GET /socket.io/?EIO=4&transport=polling&t=PE1_Ipq HTTP/1.1" 200 -
+2024-12-01 14:31:17,945 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:17] "GET /socket.io/?EIO=4&transport=polling&t=PE1_JN1 HTTP/1.1" 200 -
+2024-12-01 14:31:19,238 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:19] "POST /socket.io/?EIO=4&transport=polling&t=PE1_K23&sid=BwrmZI6NUR8Iu6P2AAAA HTTP/1.1" 200 -
+2024-12-01 14:31:20,341 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:20] "GET /socket.io/?EIO=4&transport=polling&t=PE1_K2z&sid=BwrmZI6NUR8Iu6P2AAAA HTTP/1.1" 200 -
+2024-12-01 14:31:20,587 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:20] "POST /socket.io/?EIO=4&transport=polling&t=PE1_K6H&sid=NGXPvBNjzd1mn5-3AAAB HTTP/1.1" 200 -
+2024-12-01 14:31:21,291 - INFO - 127.0.0.1 - - [01/Dec/2024 14:31:21] "GET /socket.io/?EIO=4&transport=polling&t=PE1_K6d&sid=NGXPvBNjzd1mn5-3AAAB HTTP/1.1" 200 -
+2024-12-01 14:45:36,181 - WARNING - User disconnected: gsd12
+2024-12-01 14:45:36,213 - INFO - 127.0.0.1 - - [01/Dec/2024 14:45:36] "GET /socket.io/?EIO=4&transport=websocket&sid=BwrmZI6NUR8Iu6P2AAAA HTTP/1.1" 200 -
+2024-12-01 16:09:18,125 - INFO - 127.0.0.1 - - [01/Dec/2024 16:09:18] "GET /socket.io/?EIO=4&transport=websocket&sid=NGXPvBNjzd1mn5-3AAAB HTTP/1.1" 200 -
+2024-12-01 16:09:28,908 - INFO - 127.0.0.1 - - [01/Dec/2024 16:09:28] "[32mGET /chat HTTP/1.1[0m" 302 -
+2024-12-01 16:09:36,816 - INFO - 127.0.0.1 - - [01/Dec/2024 16:09:36] "GET /login HTTP/1.1" 200 -
+2024-12-01 16:09:47,538 - INFO - 127.0.0.1 - - [01/Dec/2024 16:09:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-12-01 16:10:27,859 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:27] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-12-01 16:10:32,638 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:32] "GET /chat HTTP/1.1" 200 -
+2024-12-01 16:10:34,776 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:34] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-12-01 16:10:37,325 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:37] "GET /socket.io/?EIO=4&transport=polling&t=PE2M2Nq HTTP/1.1" 200 -
+2024-12-01 16:10:38,208 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:38] "GET /socket.io/?EIO=4&transport=polling&t=PE2M2ux HTTP/1.1" 200 -
+2024-12-01 16:10:39,320 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:39] "POST /socket.io/?EIO=4&transport=polling&t=PE2M3FW&sid=lTxiSstrQTsygbyuAAAF HTTP/1.1" 200 -
+2024-12-01 16:10:39,399 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:39] "GET /socket.io/?EIO=4&transport=polling&t=PE2M3J0&sid=lTxiSstrQTsygbyuAAAF HTTP/1.1" 200 -
+2024-12-01 16:10:39,572 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:39] "GET /socket.io/?EIO=4&transport=polling&t=PE2M3Pk&sid=lTxiSstrQTsygbyuAAAF HTTP/1.1" 200 -
+2024-12-01 16:10:50,443 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:50] "POST /socket.io/?EIO=4&transport=polling&t=PE2M63W&sid=O7NK3F5yajtJb8pBAAAE HTTP/1.1" 200 -
+2024-12-01 16:10:51,613 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:51] "GET /socket.io/?EIO=4&transport=polling&t=PE2M6Fs&sid=O7NK3F5yajtJb8pBAAAE HTTP/1.1" 200 -
+2024-12-01 16:10:54,827 - INFO - 127.0.0.1 - - [01/Dec/2024 16:10:54] "GET /socket.io/?EIO=4&transport=polling&t=PE2M78B&sid=O7NK3F5yajtJb8pBAAAE HTTP/1.1" 200 -
+2024-12-01 16:14:06,502 - WARNING - User disconnected: Akmm
+2024-12-01 16:14:06,518 - INFO - 127.0.0.1 - - [01/Dec/2024 16:14:06] "GET /socket.io/?EIO=4&transport=websocket&sid=lTxiSstrQTsygbyuAAAF HTTP/1.1" 200 -
+2024-12-01 16:14:14,947 - INFO - 127.0.0.1 - - [01/Dec/2024 16:14:14] "GET /chat HTTP/1.1" 200 -
+2024-12-01 16:14:18,922 - INFO - 127.0.0.1 - - [01/Dec/2024 16:14:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-12-01 16:14:22,578 - INFO - 127.0.0.1 - - [01/Dec/2024 16:14:22] "GET /socket.io/?EIO=4&transport=polling&t=PE2MvcH HTTP/1.1" 200 -
+2024-12-01 16:14:23,477 - INFO - 127.0.0.1 - - [01/Dec/2024 16:14:23] "POST /socket.io/?EIO=4&transport=polling&t=PE2Mw0o&sid=yx4xD8_vuqYQg5LrAAAI HTTP/1.1" 200 -
+2024-12-01 16:14:23,621 - INFO - 127.0.0.1 - - [01/Dec/2024 16:14:23] "GET /socket.io/?EIO=4&transport=polling&t=PE2Mw19&sid=yx4xD8_vuqYQg5LrAAAI HTTP/1.1" 200 -
+2024-12-01 16:14:36,342 - INFO - 127.0.0.1 - - [01/Dec/2024 16:14:36] "GET /socket.io/?EIO=4&transport=websocket&sid=O7NK3F5yajtJb8pBAAAE HTTP/1.1" 200 -
+2024-12-01 16:15:25,387 - INFO - 127.0.0.1 - - [01/Dec/2024 16:15:25] "GET /socket.io/?EIO=4&transport=polling&t=PE2N970 HTTP/1.1" 200 -
+2024-12-01 16:15:39,849 - INFO - 127.0.0.1 - - [01/Dec/2024 16:15:39] "POST /socket.io/?EIO=4&transport=polling&t=PE2NBRb&sid=wPZIMXR2oRCmIqWbAAAK HTTP/1.1" 200 -
+2024-12-01 16:15:40,013 - INFO - 127.0.0.1 - - [01/Dec/2024 16:15:40] "GET /socket.io/?EIO=4&transport=polling&t=PE2NCbk&sid=wPZIMXR2oRCmIqWbAAAK HTTP/1.1" 200 -
+2024-12-01 16:15:47,842 - INFO - 127.0.0.1 - - [01/Dec/2024 16:15:47] "GET /socket.io/?EIO=4&transport=websocket&sid=wPZIMXR2oRCmIqWbAAAK HTTP/1.1" 200 -
+2024-12-01 16:15:54,934 - INFO - 127.0.0.1 - - [01/Dec/2024 16:15:54] "[32mGET /chat HTTP/1.1[0m" 302 -
+2024-12-01 16:15:55,692 - INFO - 127.0.0.1 - - [01/Dec/2024 16:15:55] "GET /login HTTP/1.1" 200 -
+2024-12-01 16:15:56,908 - INFO - 127.0.0.1 - - [01/Dec/2024 16:15:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-12-01 16:19:24,360 - INFO - 127.0.0.1 - - [01/Dec/2024 16:19:24] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-12-01 16:19:26,373 - INFO - 127.0.0.1 - - [01/Dec/2024 16:19:26] "GET /chat HTTP/1.1" 200 -
+2024-12-01 16:19:31,376 - INFO - 127.0.0.1 - - [01/Dec/2024 16:19:31] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-12-01 16:20:02,077 - INFO - 127.0.0.1 - - [01/Dec/2024 16:20:02] "GET /socket.io/?EIO=4&transport=polling&t=PE2OCgg HTTP/1.1" 200 -
+2024-12-01 16:20:08,192 - INFO - 127.0.0.1 - - [01/Dec/2024 16:20:08] "POST /socket.io/?EIO=4&transport=polling&t=PE2OE8V&sid=VEvviFIwveAGYlrjAAAM HTTP/1.1" 200 -
+2024-12-01 16:20:08,957 - INFO - 127.0.0.1 - - [01/Dec/2024 16:20:08] "GET /socket.io/?EIO=4&transport=polling&t=PE2OE8h&sid=VEvviFIwveAGYlrjAAAM HTTP/1.1" 200 -
+2024-12-01 16:20:16,649 - INFO - 127.0.0.1 - - [01/Dec/2024 16:20:16] "GET /socket.io/?EIO=4&transport=polling&t=PE2OFwi&sid=VEvviFIwveAGYlrjAAAM HTTP/1.1" 200 -
+2024-12-01 16:23:57,039 - INFO - 127.0.0.1 - - [01/Dec/2024 16:23:57] "GET /socket.io/?EIO=4&transport=polling&t=PE2P62e HTTP/1.1" 200 -
+2024-12-01 16:23:58,262 - INFO - 127.0.0.1 - - [01/Dec/2024 16:23:58] "POST /socket.io/?EIO=4&transport=polling&t=PE2P6Dq&sid=yYbzk_xux_HmeaikAAAO HTTP/1.1" 200 -
+2024-12-01 16:23:58,490 - INFO - 127.0.0.1 - - [01/Dec/2024 16:23:58] "GET /socket.io/?EIO=4&transport=polling&t=PE2P6Ez&sid=yYbzk_xux_HmeaikAAAO HTTP/1.1" 200 -
+2024-12-01 16:23:58,853 - INFO - 127.0.0.1 - - [01/Dec/2024 16:23:58] "GET /socket.io/?EIO=4&transport=polling&t=PE2P6Vi&sid=yYbzk_xux_HmeaikAAAO HTTP/1.1" 200 -
+2024-12-01 16:24:49,479 - WARNING - User disconnected: Akmm
+2024-12-01 16:24:49,485 - INFO - 127.0.0.1 - - [01/Dec/2024 16:24:49] "GET /socket.io/?EIO=4&transport=websocket&sid=yx4xD8_vuqYQg5LrAAAI HTTP/1.1" 200 -
+2024-12-01 16:24:53,823 - INFO - 127.0.0.1 - - [01/Dec/2024 16:24:53] "GET /socket.io/?EIO=4&transport=polling&t=PE2PJyy HTTP/1.1" 200 -
+2024-12-01 16:24:57,711 - INFO - 127.0.0.1 - - [01/Dec/2024 16:24:57] "POST /socket.io/?EIO=4&transport=polling&t=PE2PKrN&sid=OairZdYxppD9mx9NAAAQ HTTP/1.1" 200 -
+2024-12-01 16:24:58,109 - INFO - 127.0.0.1 - - [01/Dec/2024 16:24:58] "GET /socket.io/?EIO=4&transport=polling&t=PE2PKrZ&sid=OairZdYxppD9mx9NAAAQ HTTP/1.1" 200 -
+2024-12-01 16:29:53,212 - WARNING - User disconnected: Akmm
+2024-12-01 16:29:53,223 - INFO - 127.0.0.1 - - [01/Dec/2024 16:29:53] "GET /socket.io/?EIO=4&transport=websocket&sid=OairZdYxppD9mx9NAAAQ HTTP/1.1" 200 -
+2024-12-01 16:30:07,147 - INFO - 127.0.0.1 - - [01/Dec/2024 16:30:07] "GET /socket.io/?EIO=4&transport=polling&t=PE2QUVN HTTP/1.1" 200 -
