@@ -108,11 +108,24 @@ def default_error_handler(e):
     logging.error(f"SocketIO Error: {e}")
     emit('receive_message', {'user': 'System', 'msg': 'A server error occurred. Please try again.'})
 
-# Route: Display the login page
-@app.route('/')
+# Route: Handle user login
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    form = LoginForm()
-    return render_template('login.html', form=form)
+    form = LoginForm()  # Initialize the login form
+    if form.validate_on_submit():  # Check if form data is valid
+        username = form.username.data
+        password = form.password.data
+        user = User.query.filter_by(username=username).first()  # Retrieve the user from the database
+
+        # Verify the password
+        if user and user.check_password(password):
+            session['username'] = user.username  # Save username in the session
+            timestamp = datetime.now(timezone('Africa/Nairobi')).isoformat()  # Current timestamp in Nairobi timezone
+            socketio.emit('receive_message', {'user': 'System', 'msg': f'{username} has logged in.', 'timestamp': timestamp})
+            return redirect(url_for('chat'))  # Redirect to the chat page
+        else:
+            flash('Invalid credentials, please try again.', 'error')  # Show error message if login fails
+    return render_template('login.html', form=form)  # Display the login form template
 
 # Route: Handle user registration
 @app.route('/register', methods=['GET', 'POST'])
@@ -154,6 +167,7 @@ def login():
         # Verify the password
         if user and user.check_password(password):
             session['username'] = user.username  # Save username in the session
+            flash('Login successful!', 'success')
             timestamp = datetime.now(timezone('Africa/Nairobi')).isoformat()  # Current timestamp in Nairobi timezone
             socketio.emit('receive_message', {'user': 'System', 'msg': f'{username} has logged in.', 'timestamp': timestamp})
             return redirect(url_for('chat'))  # Redirect to the chat page
@@ -175,8 +189,8 @@ def logout():
 @app.route('/chat')
 def chat():
     if 'username' not in session:  # Ensure the user is logged in
-        return redirect(url_for('login'))  # Redirect to the login page if not logged in
-    messages = Message.query.order_by(Message.timestamp.desc()).limit(10).all()  # Fetch the latest 10 messages
+        return redirect(url_for('index'))  # Redirect to the login page if not logged in
+    messages = Message.query.order_by(Message.timestamp.desc()).limit(50).all()  # Fetch the latest 50 messages
     return render_template('index.html', messages=messages)  # Display the chat page template with messages
 
 # Socket.IO event: When a user joins a chat room
