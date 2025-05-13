@@ -1,24 +1,29 @@
-2024-12-02 17:15:07,782 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-05-13 21:30:20,885 - INFO -  * Restarting with stat
+2025-05-13 21:30:23,540 - WARNING -  * Debugger is active!
+2025-05-13 21:30:23,547 - INFO -  * Debugger PIN: 373-890-540
+2025-05-13 21:30:23,611 - INFO - 127.0.0.1 - - [13/May/2025 21:30:23] "GET /socket.io/?EIO=4&transport=polling&t=PRAwNtJ HTTP/1.1" 200 -
+2025-05-13 21:30:23,626 - INFO - 127.0.0.1 - - [13/May/2025 21:30:23] "POST /socket.io/?EIO=4&transport=polling&t=PRAwOH_&sid=l0vQrWksFhhzUbsDAAAA HTTP/1.1" 200 -
+2025-05-13 21:30:23,637 - INFO - 127.0.0.1 - - [13/May/2025 21:30:23] "GET /socket.io/?EIO=4&transport=polling&t=PRAwOIB&sid=l0vQrWksFhhzUbsDAAAA HTTP/1.1" 200 -
+2025-05-13 21:36:35,646 - INFO - 127.0.0.1 - - [13/May/2025 21:36:35] "GET /socket.io/?EIO=4&transport=websocket&sid=l0vQrWksFhhzUbsDAAAA HTTP/1.1" 200 -
+2025-05-13 21:36:35,714 - INFO - 127.0.0.1 - - [13/May/2025 21:36:35] "GET / HTTP/1.1" 200 -
+2025-05-13 21:36:35,861 - INFO - 127.0.0.1 - - [13/May/2025 21:36:35] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-13 21:36:35,883 - INFO - 127.0.0.1 - - [13/May/2025 21:36:35] "GET /socket.io/?EIO=4&transport=polling&t=PRAxpAY HTTP/1.1" 200 -
+2025-05-13 21:36:35,906 - INFO - 127.0.0.1 - - [13/May/2025 21:36:35] "POST /socket.io/?EIO=4&transport=polling&t=PRAxpAs&sid=yjtp95vNGsABOMFbAAAC HTTP/1.1" 200 -
+2025-05-13 21:36:35,913 - INFO - 127.0.0.1 - - [13/May/2025 21:36:35] "GET /socket.io/?EIO=4&transport=polling&t=PRAxpAt&sid=yjtp95vNGsABOMFbAAAC HTTP/1.1" 200 -
+2025-05-13 21:37:36,511 - INFO -  * Detected change in 'C:\\Users\\kuria\\Documents\\GitHub\\chat-application\\app.py', reloading
+2025-05-13 21:37:36,667 - INFO -  * Restarting with stat
+2025-05-13 21:38:14,175 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on https://127.0.0.1:5000
- * Running on https://192.168.100.225:5000
-2024-12-02 17:15:07,855 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-02 17:15:07,865 - INFO -  * Restarting with stat
-2024-12-02 17:15:28,853 - WARNING -  * Debugger is active!
-2024-12-02 17:15:28,912 - INFO -  * Debugger PIN: 373-890-540
-2024-12-02 17:17:12,075 - INFO - The CSRF tokens do not match.
-2024-12-02 17:17:12,474 - INFO - 127.0.0.1 - - [02/Dec/2024 17:17:12] "POST / HTTP/1.1" 200 -
-2024-12-02 17:17:17,609 - INFO - 127.0.0.1 - - [02/Dec/2024 17:17:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
-2024-12-02 17:17:34,804 - INFO - 127.0.0.1 - - [02/Dec/2024 17:17:34] "[32mPOST / HTTP/1.1[0m" 302 -
-2024-12-02 17:17:36,019 - INFO - 127.0.0.1 - - [02/Dec/2024 17:17:36] "GET /chat HTTP/1.1" 200 -
-2024-12-02 17:17:38,228 - INFO - 127.0.0.1 - - [02/Dec/2024 17:17:38] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
-2024-12-02 17:17:40,905 - INFO - 127.0.0.1 - - [02/Dec/2024 17:17:40] "GET /socket.io/?EIO=4&transport=polling&t=PE7k-lE HTTP/1.1" 200 -
-2024-12-02 17:17:41,379 - INFO - 127.0.0.1 - - [02/Dec/2024 17:17:41] "POST /socket.io/?EIO=4&transport=polling&t=PE7k_0M&sid=bL7VOQw2v-0lHI1vAAAA HTTP/1.1" 200 -
-2024-12-02 17:17:41,481 - INFO - 127.0.0.1 - - [02/Dec/2024 17:17:41] "GET /socket.io/?EIO=4&transport=polling&t=PE7k_0i&sid=bL7VOQw2v-0lHI1vAAAA HTTP/1.1" 200 -
-2024-12-02 17:17:41,675 - INFO - 127.0.0.1 - - [02/Dec/2024 17:17:41] "GET /socket.io/?EIO=4&transport=polling&t=PE7k_6s&sid=bL7VOQw2v-0lHI1vAAAA HTTP/1.1" 200 -
-2024-12-02 17:19:15,149 - INFO - The CSRF tokens do not match.
-2024-12-02 17:19:15,194 - INFO - 127.0.0.1 - - [02/Dec/2024 17:19:15] "POST / HTTP/1.1" 200 -
-2024-12-02 17:19:17,657 - INFO - 127.0.0.1 - - [02/Dec/2024 17:19:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
-2024-12-02 17:19:43,606 - INFO - 127.0.0.1 - - [02/Dec/2024 17:19:43] "[32mGET /chat HTTP/1.1[0m" 302 -
-2024-12-02 17:19:43,834 - INFO - 127.0.0.1 - - [02/Dec/2024 17:19:43] "GET / HTTP/1.1" 200 -
-2024-12-02 17:19:44,937 - INFO - 127.0.0.1 - - [02/Dec/2024 17:19:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+ * Running on https://192.168.8.40:5000
+2025-05-13 21:38:14,175 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-13 21:38:14,175 - INFO -  * Restarting with stat
+2025-05-13 21:38:15,566 - WARNING -  * Debugger is active!
+2025-05-13 21:38:15,571 - INFO -  * Debugger PIN: 373-890-540
+2025-05-13 21:39:02,295 - INFO - 127.0.0.1 - - [13/May/2025 21:39:02] "GET / HTTP/1.1" 200 -
+2025-05-13 21:39:02,407 - INFO - 127.0.0.1 - - [13/May/2025 21:39:02] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-05-13 21:39:02,424 - INFO - 127.0.0.1 - - [13/May/2025 21:39:02] "GET /socket.io/?EIO=4&transport=polling&t=PRAyMyE HTTP/1.1" 200 -
+2025-05-13 21:39:02,444 - INFO - 127.0.0.1 - - [13/May/2025 21:39:02] "POST /socket.io/?EIO=4&transport=polling&t=PRAyMyW&sid=Iem8VqWhe_Fu2MqDAAAA HTTP/1.1" 200 -
+2025-05-13 21:39:02,454 - INFO - 127.0.0.1 - - [13/May/2025 21:39:02] "GET /socket.io/?EIO=4&transport=polling&t=PRAyMya&sid=Iem8VqWhe_Fu2MqDAAAA HTTP/1.1" 200 -
+2025-05-13 21:48:41,321 - INFO -  * Detected change in 'C:\\Users\\kuria\\Documents\\GitHub\\chat-application\\app.py', reloading
+2025-05-13 21:48:41,517 - INFO -  * Restarting with stat

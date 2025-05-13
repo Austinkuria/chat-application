@@ -17,6 +17,11 @@ from datetime import datetime  # Working with dates and times
 from flask_cors import CORS  # Handle Cross-Origin Resource Sharing (CORS)
 from pytz import timezone  # Time zone management
 import tzlocal  # Detect local time zone
+from dotenv import load_dotenv  # Load environment variables from .env
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature  # For secure token generation
+
+# Load variables from .env file
+load_dotenv()
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -33,8 +38,8 @@ app.config['PERMANENT_SESSION_LIFETIME'] = 1800
 db = SQLAlchemy(app)
 CORS(app)  
 
-# Set up real-time communication using SocketIO
-socketio = SocketIO(app, cors_allowed_origins="*", manage_session=False)
+# Initialize SocketIO for real-time communication
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Configure logging to track events and errors with log file rotation
 log_lock = Lock()  # Ensure thread-safe logging
@@ -90,6 +95,20 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired(), Length(min=6, max=20)])
     submit = SubmitField('Login')
 
+# Serializer for generating and validating tokens
+serializer = URLSafeTimedSerializer(app.secret_key)
+
+# Password reset request form
+class PasswordResetRequestForm(FlaskForm):
+    email = EmailField('Email', validators=[InputRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+# Password reset form
+class PasswordResetForm(FlaskForm):
+    password = PasswordField('New Password', validators=[InputRequired(), Length(min=6, max=20)])
+    confirm_password = PasswordField('Confirm Password', validators=[InputRequired(), EqualTo('password', message='Passwords must match')])
+    submit = SubmitField('Reset Password')
+
 # Handle unexpected internal server errors
 @app.errorhandler(500)
 def internal_error(error):
@@ -125,7 +144,7 @@ def index():
             return redirect(url_for('chat'))  # Redirect to the chat page
         else:
             flash('Invalid credentials, please try again.', 'error')  # Show error message if login fails
-    return render_template('login.html', form=form)  # Display the login form template
+    return render_template('index.html', form=form, messages=[])
 
 # Route: Handle user registration
 @app.route('/register', methods=['GET', 'POST'])
@@ -192,6 +211,43 @@ def chat():
         return redirect(url_for('index'))  # Redirect to the login page if not logged in
     messages = Message.query.order_by(Message.timestamp.desc()).limit(50).all()  # Fetch the latest 50 messages
     return render_template('index.html', messages=messages)  # Display the chat page template with messages
+
+# Route: Request password reset
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password_request():
+    form = PasswordResetRequestForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            token = serializer.dumps(user.email, salt='password-reset-salt')
+            reset_url = url_for('reset_password', token=token, _external=True)
+            # Simulate sending email by logging the reset link
+            logging.info(f"Password reset link for {user.email}: {reset_url}")
+            flash('A password reset link has been sent to your email (check logs for demo).', 'info')
+        else:
+            flash('No account found with that email.', 'error')
+    return render_template('reset_password_request.html', form=form)
+
+# Route: Reset password using token
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    try:
+        email = serializer.loads(token, salt='password-reset-salt', max_age=3600)  # 1 hour expiry
+    except (SignatureExpired, BadSignature):
+        flash('The password reset link is invalid or has expired.', 'error')
+        return redirect(url_for('login'))
+    form = PasswordResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=email).first()
+        if user:
+            user.set_password(form.password.data)
+            db.session.commit()
+            flash('Your password has been reset. You can now log in.', 'success')
+            return redirect(url_for('login'))
+        else:
+            flash('User not found.', 'error')
+            return redirect(url_for('login'))
+    return render_template('reset_password.html', form=form)
 
 # Socket.IO event: When a user joins a chat room
 @socketio.on('join')
