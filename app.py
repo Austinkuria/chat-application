@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy  # ORM for database handling
 from flask_socketio import SocketIO, emit, join_room, leave_room, disconnect  # Real-time communication features
 from flask_wtf import FlaskForm  # Flask-WTF for form handling
 from wtforms import StringField, PasswordField, SubmitField, TextAreaField, EmailField, ValidationError, validators  # Form fields
-from wtforms.validators import InputRequired, Length, Email, EqualTo, DataRequired, Regexp  # Form validation rules
+from wtforms.validators import InputRequired, Length, Email, EqualTo, DataRequired, Regexp, Optional  # Form validation rules
 from werkzeug.security import generate_password_hash, check_password_hash  # Secure password hashing
 import logging  # Logging for debugging and tracking errors
 from threading import Lock  # Thread-safe operations
@@ -108,6 +108,15 @@ class PasswordResetForm(FlaskForm):
     password = PasswordField('New Password', validators=[InputRequired(), Length(min=6, max=20)])
     confirm_password = PasswordField('Confirm Password', validators=[InputRequired(), EqualTo('password', message='Passwords must match')])
     submit = SubmitField('Reset Password')
+
+# Define profile form with fields and validation rules
+class ProfileForm(FlaskForm):
+    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)])
+    email = EmailField('Email', validators=[InputRequired(), Email()])
+    current_password = PasswordField('Current Password', validators=[InputRequired()])
+    new_password = PasswordField('New Password', validators=[Optional(), Length(min=6, max=20)])
+    confirm_password = PasswordField('Confirm New Password', validators=[EqualTo('new_password', message='Passwords must match')])
+    submit = SubmitField('Update Profile')
 
 # Handle unexpected internal server errors
 @app.errorhandler(500)
@@ -248,6 +257,65 @@ def reset_password(token):
             flash('User not found.', 'error')
             return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
+
+# Route: View and update user profile
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    if 'username' not in session:
+        flash('Please log in to access your profile.', 'error')
+        return redirect(url_for('login'))
+    
+    user = User.query.filter_by(username=session['username']).first()
+    if not user:
+        flash('User not found.', 'error')
+        return redirect(url_for('login'))
+    
+    form = ProfileForm()
+    
+    # Pre-populate form fields with current user data
+    if request.method == 'GET':
+        form.username.data = user.username
+        form.email.data = user.email
+    
+    if form.validate_on_submit():
+        # Verify current password
+        if not user.check_password(form.current_password.data):
+            flash('Current password is incorrect.', 'error')
+            return render_template('profile.html', form=form)
+        
+        # Check if username is changed and not already taken
+        if form.username.data != user.username:
+            existing_user = User.query.filter_by(username=form.username.data).first()
+            if existing_user:
+                flash('Username already exists. Please choose a different one.', 'error')
+                return render_template('profile.html', form=form)
+        
+        # Check if email is changed and not already taken
+        if form.email.data != user.email:
+            existing_email = User.query.filter_by(email=form.email.data).first()
+            if existing_email:
+                flash('Email already exists. Please choose a different one.', 'error')
+                return render_template('profile.html', form=form)
+        
+        # Update user data
+        old_username = user.username
+        user.username = form.username.data
+        user.email = form.email.data
+        
+        # Update password if provided
+        if form.new_password.data:
+            user.set_password(form.new_password.data)
+            
+        db.session.commit()
+        
+        # Update session if username changed
+        if old_username != user.username:
+            session['username'] = user.username
+            
+        flash('Profile updated successfully!', 'success')
+        return redirect(url_for('profile'))
+        
+    return render_template('profile.html', form=form)
 
 # Socket.IO event: When a user joins a chat room
 @socketio.on('join')
